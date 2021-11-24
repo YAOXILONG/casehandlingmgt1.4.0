@@ -1,0 +1,62 @@
+// ~packageName/ -> node_modules/packageName/
+
+$--font-path: '~hui/packages/theme/fonts';
+
+@import '~hui/packages/theme/index.scss';
+
+@import '~@hui-pro/page/theme/index.scss';
+@import '~@hui-pro/layout/theme/index.scss';
+@import '~@hui-pro/empty/theme/index.scss';
+
+.big-pic-dialog {
+  .el-dialog__header {
+    position: fixed;
+    right: 40px;
+    top: 40px;
+    width: 64px;
+    height: 64px;
+    color: #fff;
+    border-radius: 64px;
+    background: rgba(0, 0, 0, 0.5);
+    border: none;
+    .el-dialog__headerbtn {
+      float: none;
+      width: 100%;
+      text-align: center;
+      padding-top: 0px;
+      height: 64px;
+      &:hover {
+        background: transparent;
+      }
+      .el-dialog__close {
+        color: #ffffff;
+        font-size: 26px;
+      }
+    }
+  }
+  .el-dialog__body {
+    padding: 0px;
+    .el-dialog__body-wrapper {
+      padding: 0px;
+    }
+  }
+  .big-pic-box {
+    text-align: center;
+    font-size: 0px;
+    .big-pic-item {
+      height: 600px;
+      width: 100%;
+    }
+    .pic-download {
+      right: 10px;
+      position: absolute;
+      bottom: 10px;
+      font-size: 20px;
+      border-radius: 20px;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+}

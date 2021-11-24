@@ -1,0 +1,747 @@
+<template>
+  <watermarkContent>
+    <div class="approveOfExitAndEntry">
+      <div>
+        <el-tabs v-model="activeName" @tab-click="handleClick">
+          <!-- <el-tab-pane label="全部" name="0"> </el-tab-pane> -->
+          <el-tab-pane label="待审批" name="1"> </el-tab-pane>
+          <el-tab-pane label="已审批" name="2"></el-tab-pane>
+        </el-tabs>
+      </div>
+      <el-badge :value="pendingApprovalQuantityNum" class="pendingApprovalQuantity">
+      </el-badge>
+      <div class="content-box">
+        <FilterSearchBoxForApplicate>
+          <FilterSearchItem>
+            <div class="item-lable">办案区</div>
+            <div class="item-input">
+              <el-select
+                v-model="searchForm.areaIndexCodes"
+                filterable
+                placeholder="请选择"
+                clear
+                multiple
+              >
+                <el-option
+                  v-for="item in areaList"
+                  :key="item.areaIndexCode"
+                  :label="item.areaName"
+                  :value="item.areaIndexCode"
+                >
+                </el-option>
+              </el-select>
+            </div>
+          </FilterSearchItem>
+          <FilterSearchItem>
+            <div class="item-lable">申请人</div>
+            <div class="item-input">
+              <el-input
+                v-model="searchForm.applyUserName"
+                placeholder="请输入"
+              ></el-input>
+            </div>
+          </FilterSearchItem>
+          <FilterSearchItem :is-col2="true">
+            <div class="item-lable">申请时间</div>
+            <div class="item-input">
+              <el-date-picker
+                v-model="timeArr"
+                type="datetimerange"
+                start-placeholder="开始时间"
+                end-placeholder="结束时间"
+                :style="{ width: '100%' }"
+              >
+              </el-date-picker>
+            </div>
+          </FilterSearchItem>
+          <!-- <FilterSearchItem>
+            <div class="item-lable">审批状态</div>
+            <div class="item-input">
+              <el-select v-model="applyStatus" placeholder="请选择" clear>
+                <el-option
+                  v-for="item in approveStatusList"
+                  :key="item.key"
+                  :label="item.name"
+                  :value="item.key"
+                  v-show="activeName == '0' ? true : activeName == item.used"
+                >
+                </el-option>
+              </el-select>
+            </div>
+          </FilterSearchItem> -->
+          <FilterSearchItem :is-btn="true">
+            <el-button type="primary" @click="searchHandle"> 搜索 </el-button>
+            <el-button @click="resetHandle"> 重置 </el-button>
+          </FilterSearchItem>
+        </FilterSearchBoxForApplicate>
+        <FilterSearchContent>
+          <el-table
+            ref="autoTable"
+            :data="tableData"
+            force-scroll
+            style="width: 100%"
+            v-loading="loading"
+            @sort-change="handleClickSort"
+          >
+            <el-table-column type="index" label="序号" width="55">
+            </el-table-column>
+            <el-table-column
+              prop="suspectPhotoUrl"
+              label="照片"
+              show-overflow-title
+            >
+              <template slot-scope="scope">
+                <el-tooltip
+                 placement="top"
+                >
+                <div slot="content">
+                  <img
+                    v-if="scope.row.suspectPhotoUrl"
+                    :src="scope.row.suspectPhotoUrl"
+                    alt=""
+                    width="135px"
+                    height="180px"
+                  />
+                  <img
+                    v-else
+                    :src="require('../../assets/image/u5576.png')"
+                    width="135px"
+                    height="180px"
+                  />
+                </div>
+                <img
+                  v-if="scope.row.suspectPhotoUrl"
+                  :src="scope.row.suspectPhotoUrl"
+                  alt=""
+                  width="39px"
+                  height="39px"
+                />
+                 <img
+                  v-else
+                  :src="require('../../assets/image/u5576.png')"
+                  width="39px"
+                  height="39px"
+                 />
+               </el-tooltip>
+             </template>
+            </el-table-column>
+            <el-table-column
+              prop="suspectName"
+              :resizable="false"
+              label="涉案人姓名"
+              show-overflow-title
+              width="180"
+            >
+              <template slot-scope="scope">
+                <span
+                  class="table-register-name"
+                  :title="scope.row.suspectName"
+                  :style="
+                    scope.row.fastSolve == 1
+                      ? 'max-width:calc(100% - 78px);'
+                      : 'max-width:calc(100%);'
+                  "
+                  >{{ scope.row.suspectName }}</span
+                >
+                <span
+                  class="status-icon green-icon"
+                  v-if="scope.row.fastSolve == 1"
+                  >快办</span
+                >
+              </template>
+            </el-table-column>
+            <el-table-column prop="sex" label="性别" show-overflow-title>
+              <template slot-scope="scope">
+                <span v-for="item in dictData.sex" :key="item.key">{{
+                  item.key == scope.row.sex ? item.name : ""
+                }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column
+              prop="suspectType"
+              :resizable="false"
+              label="人员类型"
+              show-overflow-title
+            >
+              <template slot-scope="scope">
+                <span
+                  v-for="item in dictData.suspectType"
+                  :key="item.key"
+                  class="status-icon"
+                  :class="{
+                    'red-icon': scope.row.suspectType == 1,
+                    'blue-icon': scope.row.suspectType == 2,
+                    'gray-icon':
+                      scope.row.suspectType != 1 && scope.row.suspectType != 2,
+                    'display-none': item.key != scope.row.suspectType,
+                  }"
+                  >{{
+                    item.key != scope.row.suspectType ? "" : item.name
+                  }}</span
+                >
+              </template>
+            </el-table-column>
+            <el-table-column
+              prop="deptName"
+              label="办案部门"
+              show-overflow-title
+            >
+            </el-table-column>
+            <el-table-column
+              prop="hostPoliceName"
+              label="主办民警"
+              show-overflow-title
+            >
+            </el-table-column>
+            <el-table-column prop="areaName" label="办案区" show-overflow-title>
+            </el-table-column>
+            <el-table-column prop="caseCause" label="案由" show-overflow-title>
+              <template slot-scope="scope">
+                {{ briefMap[scope.row.caseCause] }}
+              </template>
+            </el-table-column>
+            <el-table-column
+              prop="applyUserName"
+              label="申请人"
+              show-overflow-title
+            >
+            </el-table-column>
+            <el-table-column prop="applyType" label="类型" show-overflow-title>
+              <template slot-scope="scope">
+                <span v-if="scope.row.applyType == 1">入区预约</span>
+                <span v-if="scope.row.applyType == 2">入区申请</span>
+                <span v-if="scope.row.applyType == 3">出区申请</span>
+                <span v-if="scope.row.applyType == 4">临时出区申请</span>
+              </template>
+            </el-table-column>
+            <el-table-column
+              prop="applyTime"
+              label="申请时间"
+              show-overflow-title
+              width="180"
+              sortable="custom"
+            >
+              <template slot-scope="scope">
+                {{ $moment(scope.row.applyTime).format("YYYY-MM-DD HH:mm:ss") }}
+              </template>
+            </el-table-column>
+            <el-table-column
+              prop="applyStatus"
+              :resizable="false"
+              label="审批状态"
+              show-overflow-title
+              width="100"
+            >
+              <template slot-scope="scope">
+                <span
+                  class="status-icon blue-icon"
+                  v-if="scope.row.applyStatus == 0"
+                  :class="{ 'blue-icon': scope.row.applyStatus == 0 }"
+                  >待审批</span
+                >
+                <span
+                  class="status-icon red-icon"
+                  v-if="scope.row.applyStatus == 1"
+                  :class="{ 'red-icon': scope.row.applyStatus == 1 }"
+                  >已退回</span
+                >
+                <span
+                  class="status-icon green-icon"
+                  v-if="scope.row.applyStatus == 2"
+                  :class="{ 'green-icon': scope.row.applyStatus == 2 }"
+                  >已审批</span
+                >
+                <span
+                  v-if="scope.row.applyStatus == 3"
+                  >--</span
+                >
+                <span
+                  class="status-icon gray-icon"
+                  v-if="scope.row.applyStatus == 4"
+                  :class="{ 'gray-icon': scope.row.applyStatus == 4 }"
+                  >已作废</span
+                >
+              </template>
+            </el-table-column>
+            <el-table-column label="操作" show-overflow-title width="250">
+              <template slot-scope="scope">
+                <span
+                  class="table-ctrl-btn"
+                  @click="viewHandle(scope.row.applyIndexCode)"
+                  >详情</span
+                >
+                <span
+                  class="table-ctrl-btn"
+                  v-if="scope.row.applyStatus == 0&&
+                    scope.row.approvalUser == currentUser"
+                  @click="
+                    agreeHandle(
+                      scope.row.applyIndexCode,
+                      scope.row.approvalUser
+                    )
+                  "
+                  >同意</span
+                >
+                <span
+                  class="table-ctrl-btn"
+                  v-if="scope.row.applyStatus == 0&&
+                    scope.row.approvalUser == currentUser"
+                  @click="
+                    cancelHandleDialog(
+                      scope.row.applyIndexCode,
+                      scope.row.approvalUser
+                    )
+                  "
+                  >退回</span
+                >
+                <span
+                  class="table-ctrl-btn"
+                  v-show="showFlag"
+                  @click="delHandle(scope.row.applyIndexCode)"
+                  >删除</span
+                >
+              </template>
+            </el-table-column>
+          </el-table>
+        </FilterSearchContent>
+      </div>
+      <div class="pagination-box">
+        <el-pagination
+          @size-change="handleSizeChange"
+          @current-change="handleCurrentChange"
+          :current-page="searchForm.pageNo"
+          :page-sizes="[10, 20, 30, 50]"
+          :page-size="searchForm.pageSize"
+          layout="total, sizes, prev, pager, next, jumper"
+          :total="pageTotal"
+        >
+        </el-pagination>
+      </div>
+      <el-dialog
+        title="退回原因"
+        :visible.sync="dialogVisible"
+        :area="480"
+      >
+        <el-input
+          type="textarea"
+          :rows="7"
+          :count="200"
+          placeholder="请输入"
+          v-model="textarea"
+        ></el-input>
+        <span slot="footer" class="dialog-footer">
+          <el-button type="primary" @click="cancelHandle">确 定</el-button>
+          <el-button @click="closeDialog">取 消</el-button>
+        </span>
+      </el-dialog>
+    </div>
+  </watermarkContent>
+</template>
+<script>
+import FilterSearchBoxForApplicate from "../../components/FilterSearchBoxForApplicate/FilterSearchBoxForApplicate";
+import FilterSearchItem from "../../components/FilterSearchItem/FilterSearchItem";
+import FilterSearchContent from "../../components/FilterSearchContent/FilterSearchContent";
+import server from "../../server/approveOfExitAndEntry";
+
+export default {
+  name: "ApproveOfExitAndEntry",
+  data() {
+    return {
+      activeName: "1",
+      loading: false,
+      areaList: [],
+      timeArr: "",
+      applyStatus: "",
+      dictData: {
+        sex: [],
+        suspectType: [],
+      },
+      approveStatusList: [
+        { typeCode: "approveStatus", key: "1", name: "已退回", used: 0 },
+        { typeCode: "approveStatus", key: "2", name: "已审批", used: 2 },
+        { typeCode: "approveStatus", key: "0", name: "待审批", used: 1 },
+        { typeCode: "approveStatus", key: "4", name: "已作废", used: 0 },
+      ],
+      searchForm: {
+        applyTypes: [2, 3, 4],
+        areaIndexCodes: [],
+        applyUserName: "",
+        applyStatus: [0],
+        pageNo: 1,
+        pageSize: 20,
+        applyTime: {
+          startTime: "",
+          endTime: "",
+        },
+        sortby: 'applyTime'
+      },
+      order: "desc",
+      lastestParams: null,
+      pageTotal: 0,
+      tableData: [],
+      briefMap: {},
+      showFlag: false,
+      dialogVisible: false,
+      textarea: "",
+      applyIndexCodeTemp: "",
+      approvalUserTemp: "",
+      currentUser: "",
+      pendingApprovalQuantityNum: 0
+    };
+  },
+  activated() {
+    this.checkFunctionAuth();
+    this.loadPersonInfoByUserCode();
+    this.lastestParams
+      ? this.entryApplicaitionSearch(this.lastestParams)
+      : this.entryApplicaitionSearch();
+  },
+  mounted() {
+    this.searchForm = { ...this.searchForm, pageNo: 1 };
+    this.findAuthUserPlaceList(); // 获取办案区列表
+    this.inqDict(); // 获取字典列表
+  },
+  methods: {
+    //分页查询办案区出入区审批
+    async entryApplicaitionSearch(lastestParams) {
+      let params = {};
+      if (lastestParams) {
+        params = lastestParams;
+      } else {
+        let applyTime = {};
+        applyTime.startTime =
+          this.timeArr &&
+          this.timeArr[0] &&
+          this.$moment(this.timeArr[0]).format();
+        applyTime.endTime =
+          this.timeArr &&
+          this.timeArr[1] &&
+          this.$moment(this.timeArr[1]).format();
+        this.lastestParams = params = {
+          ...this.searchForm,
+          order: this.order,
+          applyStatus: this.applyStatus
+            ? [Number(this.applyStatus)]
+            : this.searchForm.applyStatus,
+          applyTime,
+          searchType: 1,
+        };
+      }
+      this.loading = true;
+      const result = await server.entryApplicaitionSearch(params);
+      const { data } = result;
+      if (data.code === "0") {
+        this.tableData = data.data.list;
+        this.pageTotal = data.data.total;
+        this.loading = false;
+        if(this.activeName == '1') {
+          this.pendingApprovalQuantityNum = data.data.total;
+        }
+      } else {
+        this.loading = false;
+        this.$messagebox(result);
+      }
+    },
+    //按申请时间排序
+    handleClickSort(column) {
+      if (column.column) {
+        column.order == "ascending"
+          ? (this.order = "asc")
+          : (this.order = "desc");
+        this.entryApplicaitionSearch();
+      }
+    },
+    //切换选项卡触发的事件
+    handleClick(tab, event) {
+      this.$refs.autoTable.columns[11].order = ''
+      this.applyStatus = "";
+      var applyStatus = [];
+      this.order = "desc";
+      if (tab.name == "0") {
+        applyStatus = [0, 1, 2, 3, 4];
+      } else if (tab.name == 1) {
+        applyStatus = [0];
+      } else if (tab.name == 2) {
+        applyStatus = [2];
+      }
+      this.searchForm = {
+        ...this.searchForm,
+        applyStatus: applyStatus,
+        pageNo: 1,
+      };
+      this.entryApplicaitionSearch();
+    },
+    // 查询按钮点击回调
+    searchHandle() {
+      this.searchForm.pageNo = 1;
+      this.entryApplicaitionSearch();
+    },
+    // 重置按钮回调
+    resetHandle() {
+      this.$refs.autoTable.columns[11].order = ''
+      this.timeArr = "";
+      this.applyStatus = "";
+      this.order = "desc";
+      this.searchForm = {
+        ...this.searchForm,
+        areaIndexCodes: [],
+        applyUserName: "",
+        pageNo: 1,
+        pageSize: 20,
+      };
+      this.entryApplicaitionSearch();
+    },
+    // 每页展示数量改变
+    handleSizeChange(pageSize) {
+      this.searchForm = { ...this.searchForm, pageSize: pageSize, pageNo: 1 };
+      this.lastestParams = {
+        ...this.lastestParams,
+        pageSize: pageSize,
+        pageNo: 1,
+      };
+      this.entryApplicaitionSearch(this.lastestParams);
+    },
+    // 页码改变
+    handleCurrentChange(pageNo) {
+      this.searchForm = { ...this.searchForm, pageNo: pageNo };
+      this.lastestParams = { ...this.lastestParams, pageNo: pageNo };
+      this.entryApplicaitionSearch(this.lastestParams);
+    },
+    // 列表删除
+    delHandle(rowId) {
+      this.$nextTick(() => {
+        let elMessageBox = document.getElementsByClassName("el-message-box--small")[0].style
+        elMessageBox.position = ''
+        elMessageBox.left = ''
+      })
+      this.$confirm("确认删除?", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "question",
+      }).then(async () => {
+        let params = {
+          applyIndexCode: rowId,
+        };
+        const result = await server.deleteEntryApplication(params);
+        const { data } = result;
+        if (data.code === "0") {
+          this.$message.success("删除成功");
+          this.entryApplicaitionSearch();
+        } else {
+          this.$messagebox(result);
+        }
+      });
+    },
+    //退回弹框
+    cancelHandleDialog(rowId, approvalUser) {
+      this.dialogVisible = true;
+      this.applyIndexCodeTemp = rowId;
+      this.approvalUserTemp = approvalUser;
+      this.textarea = ""
+    },
+    closeDialog() {
+      this.dialogVisible = false;
+      this.applyIndexCodeTemp = "";
+      this.approvalUserTemp = "";
+      this.textarea = "";
+    },
+    //退回
+    async cancelHandle() {
+      let params = {
+        applyIndexCode: this.applyIndexCodeTemp,
+        approvalResult: 2,
+        approvalUser: this.approvalUserTemp,
+        approvalOpinion: this.textarea,
+      };
+      const result = await server.submitApproval(params);
+      const { data } = result;
+      if (data.code === "0") {
+        this.$message.success("已退回！");
+        this.dialogVisible = false;
+        this.applyIndexCodeTemp = "";
+        this.approvalUserTemp = "";
+        this.textarea = "";
+        this.entryApplicaitionSearch();
+      } else {
+        this.$messagebox(result);
+      }
+    },
+    // 同意
+    agreeHandle(rowId, approvalUser) {
+      this.$nextTick(() => {
+        let elMessageBox = document.getElementsByClassName("el-message-box--small")[0].style
+        elMessageBox.position = ''
+        elMessageBox.left = ''
+      })
+      this.$confirm("确认同意?", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "question",
+      }).then(async () => {
+        let params = {
+          applyIndexCode: rowId,
+          approvalResult: 1,
+          approvalUser: approvalUser,
+        };
+        const result = await server.submitApproval(params);
+        const { data } = result;
+        if (data.code === "0") {
+          this.$message.success("已同意！");
+          this.entryApplicaitionSearch();
+        } else {
+          this.$messagebox(result);
+        }
+      });
+    },
+    // 详情跳转
+    viewHandle(applyIndexCode) {
+      applyIndexCode &&
+        this.$router.push({
+          path: "detailsPage",
+          query: { id: applyIndexCode ,currentUser: this.currentUser},
+        });
+    },
+    // 获取字典
+    async inqDict() {
+      const result = await server.inqDict();
+      const { data } = result;
+      if (data.code === "0") {
+        this.dictData = {
+          sex: data.data.sex,
+          suspectType: data.data.suspectType,
+        };
+        const briefMap = {};
+        data.data.brief.forEach((v) => {
+          briefMap[v.key] = v.name;
+        });
+        this.briefMap = briefMap;
+      } else {
+        this.$messagebox(result);
+      }
+    },
+    // 是否显示删除按钮
+    async checkFunctionAuth() {
+      const result = await server.checkFunctionAuth({
+        functionCode: "casehandlingmgt_casehandlingmgt0124_f0002",
+      });
+      const { data } = result;
+      if (data.code === "0") {
+        this.showFlag = data.data;
+      } else {
+        this.$messagebox(result);
+      }
+    },
+    // 获取办案区
+    async findAuthUserPlaceList() {
+      const result = await server.findAuthUserPlaceList();
+      const { data } = result;
+      if (data.code === "0") {
+        this.areaList = data.data.list;
+      } else {
+        this.$messagebox(result);
+      }
+    },
+        // 获取当前登录用户
+    async loadPersonInfoByUserCode() {
+      const result = await server.loadPersonInfoByUserCode();
+      const { data } = result;
+      if (data.code === "0") {
+        if(data.data) {
+          this.currentUser = data.data.personCode
+        }else{
+          this.currentUser = ""
+        }
+      } else {
+        this.$messagebox(result);
+      }
+    },
+  },
+  mixins: [],
+  components: {
+    FilterSearchBoxForApplicate,
+    FilterSearchItem,
+    FilterSearchContent,
+  },
+};
+</script>
+<style lang="less" rel="stylesheet/less">
+.approveOfExitAndEntry {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+  border: solid 8px #f2f2f2;
+  * {
+    box-sizing: border-box;
+  }
+  .pendingApprovalQuantity{
+    position: absolute;
+    display: inline-block;
+    vertical-align: middle;
+    top: 9px;
+    left: 76px
+  }
+  .content-box {
+    height: ~"calc(100% - 95px)";
+    position: relative;
+    bottom: 14px;
+    .status-icon {
+      font-size: 14px;
+      line-height: 22px !important;
+    }
+    // .filter-search-box .search-box .search-btn {
+    //   padding-top: 4px !important;
+    // }
+    // .filter-search-content {
+    //   height: ~"calc(100% - 57px)" !important 
+    // }
+    .table-ctrl-btn {
+      border-right: solid 1px #e6e6e6;
+      padding: 0px 8px;
+      font-size: 14px;
+      color: #2080f7;
+      cursor: pointer;
+      &:first-child {
+        padding-left: initial;
+      }
+      &:last-child {
+        padding-right: initial;
+        border-right: none;
+      }
+    }
+    .tableInfo {
+      height: 100%;
+    }
+    .el-tabs {
+      height: unset;
+      position: fixed;
+    }
+    .pending {
+      position: absolute;
+      top: -10px;
+      left: 180px;
+    }
+    .el-table td{
+      height: 46px !important;
+    }
+  }
+  .tag-select-box {
+    .tag-label {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .tag-select {
+      width: 260px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+  .pagination-box {
+    box-shadow: 0px -1px 0px #f2f2f2;
+    padding: 0 16px;
+    box-sizing: border-box;
+    position: relative;
+    bottom: 23px;
+  }
+}
+</style>

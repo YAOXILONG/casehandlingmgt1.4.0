@@ -1,0 +1,744 @@
+{
+  "getList": {
+    "type": 0,
+    "code": "0",
+    "msg": "SUCCESS",
+    "data": {
+      "total": 1,
+      "list": [
+        {
+          "roomName": "留置室1",
+          "roomCode": "qqqqqwccd",
+          "monitoringUseage1": "CAEMER01,S ",
+          "monitoringUseage2": "CAEMER01,S ",
+          "monitoringUseage3": "CAEMER01,S ",
+          "monitoringUseage4": "CAEMER01,S ",
+          "monitoringUseage5": "CAEMER01,S ",
+          "monitoringUseage7": "CAEMER01,S ",
+          "monitoringUseage6": "CAEMER01,S "
+        }
+      ],
+      "pageSize": 20,
+      "pageNo": 1
+    }
+  },
+  "getRoomType": {
+    "type": 0,
+    "code": "0",
+    "msg": "SUCCESS",
+    "data": [
+      {
+        "codeValue": "roomType.1001",
+        "codeName": "讯问室"
+      },
+      {
+        "codeValue": "roomType.1002",
+        "codeName": "询问室"
+      },
+      {
+        "codeValue": "roomType.1003",
+        "codeName": "谈话室"
+      }
+    ]
+  },
+  "findRoomChannelConfig": {
+    "type": 0,
+    "code": "0",
+    "msg": "SUCCESS",
+    "data": {
+      "roomChannelList": [
+        {
+          "cameraName": "camera01",
+          "cameraIndexCode": "14e4d777059545c493523af2f6b50a5e",
+          "cameraMark": "全景相机1",
+          "chanNo": 1,
+          "belongArea": "root",
+          "cameraMarkName": "全景相机"
+        },
+        {
+          "cameraName": "camera03",
+          "cameraIndexCode": "6hr4d777059545c493523af2f6b50a5e",
+          "cameraMark": "全景相机3",
+          "chanNo": 3,
+          "belongArea": "root",
+          "cameraMarkName": "卫生间相机"
+        }
+      ],
+      "roomConfigChannelList": [
+        {
+          "cameraName": "camera02",
+          "cameraIndexCode": "yue4d777059545c493523af2f6b50a5e",
+          "cameraMark": "全景相机2",
+          "chanNo": 2,
+          "belongArea": "root",
+          "cameraMarkName": "特写"
+        }
+      ]
+    }
+  },
+  "doneSuccess": {
+    "type": 0,
+    "code": "0",
+    "msg": "SUCCESS"
+  },
+  "getTree": {
+    "type": 0,
+    "code": "0",
+    "msg": "SUCCESS",
+    "data": {
+      "id": "-1",
+      "type": null,
+      "order": null,
+      "icon": null,
+      "text": "根节点",
+      "state": "closed",
+      "checked": true,
+      "attributes": null,
+      "children": [
+        {
+          "id": "b579c300f5a9406bad32e9448636ee9c",
+          "type": "areaType.1",
+          "order": "0",
+          "icon": "newarea",
+          "text": "留置办案区",
+          "state": "closed",
+          "checked": false,
+          "attributes": null,
+          "children": [
+            {
+              "id": "81f34c8f43e844998efe6a540b70012b",
+              "type": "subArea.1",
+              "order": "1",
+              "icon": "subarea",
+              "text": "wcl",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "b579c300f5a9406bad32e9448636ee9c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "77a8a42adcf94f80b2e293d66c1de473",
+              "type": "roomType.2001",
+              "order": "0",
+              "icon": "newroom",
+              "text": "6-1101",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "b579c300f5a9406bad32e9448636ee9c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "f15e395e956244e18b745bf3a11c7221",
+              "type": "roomType.2001",
+              "order": "1",
+              "icon": "newroom",
+              "text": "6-1102",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "b579c300f5a9406bad32e9448636ee9c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "4f0d03ae869845dcb99505f306a11313",
+              "type": "roomType.2001",
+              "order": "2",
+              "icon": "newroom",
+              "text": "6-1103",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "b579c300f5a9406bad32e9448636ee9c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "08a66e560e214dcb9ea645bbee535b67",
+              "type": "roomType.2001",
+              "order": "3",
+              "icon": "newroom",
+              "text": "6-1104",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "b579c300f5a9406bad32e9448636ee9c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "997a8ba7596b4b748e5f19d8bca8daee",
+              "type": "roomType.2001",
+              "order": "4",
+              "icon": "newroom",
+              "text": "6-1105",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "b579c300f5a9406bad32e9448636ee9c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "ad59568d697245e69360409a63f17a78",
+              "type": "roomType.2001",
+              "order": "5",
+              "icon": "newroom",
+              "text": "6-1106",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "b579c300f5a9406bad32e9448636ee9c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "9fe2a005c1fa4aac89bfa3d9ff492e1e",
+              "type": "roomType.1008",
+              "order": "6",
+              "icon": "newroom",
+              "text": "登记室",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "b579c300f5a9406bad32e9448636ee9c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "5b078c606d954065adca639f00b39617",
+              "type": "roomType.2002",
+              "order": "7",
+              "icon": "newroom",
+              "text": "安全监控室",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "b579c300f5a9406bad32e9448636ee9c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "b330f6b1e1d9414d8ee02c70a9d7cd05",
+              "type": "roomType.1006",
+              "order": "8",
+              "icon": "newroom",
+              "text": "远程",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "b579c300f5a9406bad32e9448636ee9c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "8de29126a90a49399eec68b87cbb2d58",
+              "type": "roomType.2001",
+              "order": "9",
+              "icon": "newroom",
+              "text": "留置室01",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "b579c300f5a9406bad32e9448636ee9c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "25878c74e9e1439bbf81a1834a6bb0d5",
+              "type": "roomType.2003",
+              "order": "10",
+              "icon": "newroom",
+              "text": "安全检查室",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "b579c300f5a9406bad32e9448636ee9c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "fe84781cdbe443e1ac700c6e8b08261f",
+              "type": "roomType.2001",
+              "order": "11",
+              "icon": "newroom",
+              "text": "测试盛世嫡妃的冯绍峰非水电费水电费地方是否是11111111",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "b579c300f5a9406bad32e9448636ee9c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "01a46f389f2f49e3af689fa2609e16a6",
+              "type": "roomType.1001",
+              "order": "12",
+              "icon": "newroom",
+              "text": "讯问1",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "b579c300f5a9406bad32e9448636ee9c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "6928ed9bf7c34a0cbdf009198a765939",
+              "type": "roomType.2001",
+              "order": "13",
+              "icon": "newroom",
+              "text": "留置02",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "b579c300f5a9406bad32e9448636ee9c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            }
+          ],
+          "parentId": "0",
+          "attribute": null,
+          "existParent": true,
+          "existChildren": true
+        },
+        {
+          "id": "ec509ace12024885b087a84100854e77",
+          "type": "areaType.2",
+          "order": "1",
+          "icon": "newarea",
+          "text": "走读办案区",
+          "state": "closed",
+          "checked": false,
+          "attributes": null,
+          "children": [
+            {
+              "id": "3f38d534e44b4c929f1e8ac909971194",
+              "type": "roomType.1003",
+              "order": "0",
+              "icon": "newroom",
+              "text": "7-1101",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "ec509ace12024885b087a84100854e77",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "bfb047d05f3f4021abd3e55c5e9e3b93",
+              "type": "roomType.1003",
+              "order": "1",
+              "icon": "newroom",
+              "text": "7-1102",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "ec509ace12024885b087a84100854e77",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            }
+          ],
+          "parentId": "0",
+          "attribute": null,
+          "existParent": true,
+          "existChildren": true
+        },
+        {
+          "id": "c4bffeca3c0d4ba88c51cb809ad1a3c1",
+          "type": "areaType.1",
+          "order": "2",
+          "icon": "newarea",
+          "text": "1",
+          "state": "closed",
+          "checked": false,
+          "attributes": null,
+          "children": [
+            {
+              "id": "ad093c56c2be4d5fa67d98bc6ea437ba",
+              "type": "subArea.1",
+              "order": "2",
+              "icon": "subarea",
+              "text": "1",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [
+                {
+                  "id": "3aeb4ab1f1f04c17b2356c752fca3ee1",
+                  "type": "roomType.1008",
+                  "order": "0",
+                  "icon": "newroom",
+                  "text": "1",
+                  "state": "closed",
+                  "checked": false,
+                  "attributes": null,
+                  "children": [],
+                  "parentId": "ad093c56c2be4d5fa67d98bc6ea437ba",
+                  "attribute": null,
+                  "existParent": true,
+                  "existChildren": false
+                },
+                {
+                  "id": "b12d1ef5dd8642d0be529735765da75f",
+                  "type": "roomType.1003",
+                  "order": "1",
+                  "icon": "newroom",
+                  "text": "2",
+                  "state": "closed",
+                  "checked": false,
+                  "attributes": null,
+                  "children": [],
+                  "parentId": "ad093c56c2be4d5fa67d98bc6ea437ba",
+                  "attribute": null,
+                  "existParent": true,
+                  "existChildren": false
+                },
+                {
+                  "id": "e1963cb11b034ca9a3cb76edc1f48158",
+                  "type": "roomType.2004",
+                  "order": "2",
+                  "icon": "newroom",
+                  "text": "3",
+                  "state": "closed",
+                  "checked": false,
+                  "attributes": null,
+                  "children": [],
+                  "parentId": "ad093c56c2be4d5fa67d98bc6ea437ba",
+                  "attribute": null,
+                  "existParent": true,
+                  "existChildren": false
+                },
+                {
+                  "id": "fc398707be954caba17ecb23714a7086",
+                  "type": "roomType.1002",
+                  "order": "3",
+                  "icon": "newroom",
+                  "text": "4",
+                  "state": "closed",
+                  "checked": false,
+                  "attributes": null,
+                  "children": [],
+                  "parentId": "ad093c56c2be4d5fa67d98bc6ea437ba",
+                  "attribute": null,
+                  "existParent": true,
+                  "existChildren": false
+                },
+                {
+                  "id": "cde628a1d681464381402b4dd6ece0a6",
+                  "type": "roomType.2003",
+                  "order": "4",
+                  "icon": "newroom",
+                  "text": "5",
+                  "state": "closed",
+                  "checked": false,
+                  "attributes": null,
+                  "children": [],
+                  "parentId": "ad093c56c2be4d5fa67d98bc6ea437ba",
+                  "attribute": null,
+                  "existParent": true,
+                  "existChildren": false
+                },
+                {
+                  "id": "1e2116d4dfbd412c94f8dc99b836b84f",
+                  "type": "roomType.2001",
+                  "order": "5",
+                  "icon": "newroom",
+                  "text": "6",
+                  "state": "closed",
+                  "checked": false,
+                  "attributes": null,
+                  "children": [],
+                  "parentId": "ad093c56c2be4d5fa67d98bc6ea437ba",
+                  "attribute": null,
+                  "existParent": true,
+                  "existChildren": false
+                },
+                {
+                  "id": "5fe426aedd824b41885e359e03e6c96f",
+                  "type": "roomType.1007",
+                  "order": "6",
+                  "icon": "newroom",
+                  "text": "7",
+                  "state": "closed",
+                  "checked": false,
+                  "attributes": null,
+                  "children": [],
+                  "parentId": "ad093c56c2be4d5fa67d98bc6ea437ba",
+                  "attribute": null,
+                  "existParent": true,
+                  "existChildren": false
+                },
+                {
+                  "id": "3f0b94c81d4a4666bcd7ca0415167e15",
+                  "type": "roomType.1006",
+                  "order": "7",
+                  "icon": "newroom",
+                  "text": "8",
+                  "state": "closed",
+                  "checked": false,
+                  "attributes": null,
+                  "children": [],
+                  "parentId": "ad093c56c2be4d5fa67d98bc6ea437ba",
+                  "attribute": null,
+                  "existParent": true,
+                  "existChildren": false
+                },
+                {
+                  "id": "ec18958aa3fe4fdea90da94104731fe0",
+                  "type": "roomType.1005",
+                  "order": "8",
+                  "icon": "newroom",
+                  "text": "9",
+                  "state": "closed",
+                  "checked": false,
+                  "attributes": null,
+                  "children": [],
+                  "parentId": "ad093c56c2be4d5fa67d98bc6ea437ba",
+                  "attribute": null,
+                  "existParent": true,
+                  "existChildren": false
+                },
+                {
+                  "id": "1e3de235295e4667a8126a88d7426fc4",
+                  "type": "roomType.1004",
+                  "order": "9",
+                  "icon": "newroom",
+                  "text": "10",
+                  "state": "closed",
+                  "checked": false,
+                  "attributes": null,
+                  "children": [],
+                  "parentId": "ad093c56c2be4d5fa67d98bc6ea437ba",
+                  "attribute": null,
+                  "existParent": true,
+                  "existChildren": false
+                },
+                {
+                  "id": "4ac60e154add4f9588287f83923d3478",
+                  "type": "roomType.2005",
+                  "order": "10",
+                  "icon": "newroom",
+                  "text": "11",
+                  "state": "closed",
+                  "checked": false,
+                  "attributes": null,
+                  "children": [],
+                  "parentId": "ad093c56c2be4d5fa67d98bc6ea437ba",
+                  "attribute": null,
+                  "existParent": true,
+                  "existChildren": false
+                }
+              ],
+              "parentId": "c4bffeca3c0d4ba88c51cb809ad1a3c1",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": true
+            }
+          ],
+          "parentId": "0",
+          "attribute": null,
+          "existParent": true,
+          "existChildren": true
+        },
+        {
+          "id": "5c36cf624c334a8aa43efe49d4d310c1",
+          "type": "areaType.2",
+          "order": "3",
+          "icon": "newarea",
+          "text": "ee",
+          "state": "closed",
+          "checked": false,
+          "attributes": null,
+          "children": [],
+          "parentId": "0",
+          "attribute": null,
+          "existParent": true,
+          "existChildren": false
+        },
+        {
+          "id": "306433aa5b1b450286c833d9db25d29c",
+          "type": "areaType.1",
+          "order": "4",
+          "icon": "newarea",
+          "text": "xr_test",
+          "state": "closed",
+          "checked": false,
+          "attributes": null,
+          "children": [
+            {
+              "id": "db9bb0af9b8c4983b3d88a996a1d6f9b",
+              "type": "subArea.1",
+              "order": "3",
+              "icon": "subarea",
+              "text": "分区1",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "306433aa5b1b450286c833d9db25d29c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            },
+            {
+              "id": "36fc692615684c398c4bb6796d3dfda9",
+              "type": "roomType.2003",
+              "order": "0",
+              "icon": "newroom",
+              "text": "test",
+              "state": "closed",
+              "checked": false,
+              "attributes": null,
+              "children": [],
+              "parentId": "306433aa5b1b450286c833d9db25d29c",
+              "attribute": null,
+              "existParent": true,
+              "existChildren": false
+            }
+          ],
+          "parentId": "0",
+          "attribute": null,
+          "existParent": true,
+          "existChildren": true
+        }
+      ],
+      "parentId": "",
+      "attribute": null,
+      "existParent": false,
+      "existChildren": true
+    }
+  },
+  "docTree": {
+    "type": 0,
+    "code": "0",
+    "msg": "SUCCESS",
+    "data": [
+      {
+        "id": 1,
+        "parentId": 0,
+        "name": "留置决定书",
+        "code": "001",
+        "used": 0,
+        "isDefault": 1,
+        "detainConfigDocumentDTOS": [
+          {
+            "id": 11,
+            "parentId": 1,
+            "name": "留置决定书（统一保存）",
+            "code": "001001",
+            "pageNo": "1",
+            "used": 0,
+            "isDefault": 1,
+            "delete": 0,
+            "detainConfigDocumentDTOS": []
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "parentId": 0,
+        "name": "其他",
+        "code": "999",
+        "used": 1,
+        "isDefault": 1,
+        "detainConfigDocumentDTOS": [
+          {
+            "id": 91,
+            "parentId": 9,
+            "name": "其他",
+            "code": "999001",
+            "pageNo": null,
+            "used": 1,
+            "isDefault": 1,
+            "detainConfigDocumentDTOS": []
+          }
+        ]
+      }
+    ]
+  },
+  "loadDocTree": {
+    "type": 0,
+    "code": "0",
+    "msg": "SUCCESS",
+    "data": {
+      "parentId": 0,
+      "name": "留置决定书",
+      "code": "001",
+      "pageNo": null,
+      "id": 1,
+      "isDefault": 1,
+      "used": 0,
+      "tagCodes": [
+        "1",
+        "2"
+      ]
+    }
+  },
+  "deletion": {
+    "type": 0,
+    "code": "0",
+    "msg": "SUCCESS"
+  },
+  "getDefaultCode": {
+    "type": 0,
+    "code": "0",
+    "msg": "SUCCESS",
+    "data": "asasxxxxxxxx"
+  },
+  "checkCodeExist": {
+    "type": 0,
+    "code": "0",
+    "msg": "SUCCESS",
+    "data": "Code value is available."
+  },
+  "save": {
+    "type": 0,
+    "code": "0",
+    "msg": "SUCCESS",
+    "data": "Code value is available."
+  },
+  "modify": {
+    "type": 0,
+    "code": "0",
+    "msg": "SUCCESS"
+  }
+}

@@ -1,0 +1,453 @@
+/*
+  el-table边框及内部按钮样式统一处理
+  by cuozhenzhen
+*/
+body, html,#apps {
+  height: 100%;
+}
+.el-table.noborder{
+  border: none;
+  /*height: ~'calc(100% - 48px)';*/
+  &:after {
+    background: transparent;
+  }
+}
+.el-table__body .el-button.el-button--link {
+  padding: 3px 10px 3px 0 !important;
+  position: relative !important;
+  height: 24px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 12px;
+    background: #e6e6e6;
+    right: 0;
+    top: 7px;
+  }
+}
+.el-table__body .el-button:last-child {
+  &:after {
+    display: none;
+  }
+}
+
+.el-button--text {
+  color: #2080f7;
+}
+
+.el-button--text:active, .el-button--text:hover {
+  color: #4d99f9;
+}
+
+.el-popover {
+  min-width: 20px;
+  padding: 8px 16px;
+  width: auto !important;
+}
+
+.path-desc-box {
+}
+
+.subhead {
+  height: 24px;
+  font-size: 14px;
+  line-height: 24px;
+  padding-left: 32px;
+}
+
+.el-breadcrumb__item__inner a:hover,
+.el-breadcrumb__item__inner:hover {
+  color: #999999;
+  cursor: default;
+}
+
+.el-breadcrumb__item__inner, .el-breadcrumb__item__inner a {
+  color: #999999;
+}
+
+.el-breadcrumb__item:last-child .el-breadcrumb__item__inner,
+.el-breadcrumb__item:last-child .el-breadcrumb__item__inner a,
+.el-breadcrumb__item:last-child .el-breadcrumb__item__inner a:hover,
+.el-breadcrumb__item:last-child .el-breadcrumb__item__inner:hover {
+  color: #4D4D4D;
+  cursor: default;
+}
+
+.el-pagination .el-pagination-wrapper .el-pagination__total {
+  height: 32px;
+  line-height: 32px;
+}
+
+.el-tree-node__label {
+  line-height: 32px;
+}
+
+.tablecontainer .el-scrollbar__wrap {
+  height: calc(~"100% + 17px");
+}
+
+.el-dropdown-menu {
+  font-size: 12px !important;
+}
+
+.el-alert__title {
+  vertical-align: middle;
+}
+
+.roominfolist {
+  .el-card__body {
+    padding: 0 20px 8px;
+  }
+
+  .el-card__header {
+    font-size: 16px;
+    padding: 9px 20px;
+    line-height: 30px;
+
+    .cardtitle {
+      vertical-align: middle;
+    }
+
+    button {
+      width: 104px;
+    }
+  }
+
+  .el-alert {
+    margin-bottom: 8px;
+  }
+
+  .tableactionlist {
+    height: 48px;
+    line-height: 48px;
+
+    & > button {
+      vertical-align: middle;
+    }
+
+    .el-dropdown {
+      line-height: 48px;
+
+      & > button {
+        vertical-align: middle;
+      }
+    }
+  }
+
+  .el-table {
+    border-left: 0;
+  }
+
+  .el-table:after {
+    width: 0;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+
+  .clearfix:after {
+    clear: both
+  }
+}
+
+// 表单样式
+.add-edit-from-box {
+  * {
+    box-sizing: border-box;
+  }
+
+  width: 100%;
+  height: 100%;
+  background: #f2f2f2;
+  .title-detail-box {
+    background: #ffffff;
+    padding-left: 36px;
+    font-size: 14px;
+    color: #999999;
+    padding-bottom: 14px;
+    position: relative;
+    top: -1px;
+    border-bottom: solid 1px #e5e5e5;
+    .title-detail-item {
+      margin-right: 32px;
+    }
+  }
+  .add-edit-from-back {
+    width: 100%;
+    background: #f2f2f2;
+    border: solid 10px #f2f2f2;
+    position: relative;
+    .el-scrollbar__wrap {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+    .el-scrollbar__view {
+      background: #ffffff;
+    }
+    .add-edit-from-content {
+      width: ~"calc(33.3% + 112px)";
+      margin: 0 auto;
+      padding: 40px 0px;
+      padding-bottom: 0px;
+    }
+  }
+
+  .add-edit-btn {
+    width: 96px;
+    height: 32px;
+  }
+
+  .title-desc {
+    padding: 10px;
+    border-bottom: solid 1px #e5e5e5;
+  }
+
+  &.full {
+    .add-edit-from-back {
+      height: ~"calc(100% - 96px)";
+
+      .add-edit-from-content {
+        padding-bottom: 40px;
+      }
+    }
+
+    .form-btns {
+      border-top: solid 1px #e5e5e5;
+      padding-bottom: 8px;
+    }
+
+    .el-scrollbar__wrap {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
+
+  .form-btns {
+    width: 100%;
+    background-color: #ffffff;
+    text-align: center;
+    padding: 8px;
+    padding-bottom: 40px;
+  }
+  .form-btns-box {
+    .form-btns {
+      width: 100%;
+      background-color: #ffffff;
+      text-align: left;
+      padding: 0px;
+      padding-bottom: 40px;
+    }
+  }
+}
+
+thead > tr  {
+  background: #FAFAFA !important;
+}
+
+// .el-breadcrumb {
+//   line-height: 32px!important;
+//   font-size: 14px !important;
+
+//   .el-button {
+//     float: left;
+//   }
+// }
+
+.resource-manage-tree.el-scrollbar {
+  height: ~"calc(100% - 33px)";
+}
+.redSpan{
+  display: inline-block;
+  height: 24px;
+  max-width:66px;
+  text-align: center;
+  line-height: 24px;
+  font-size: 12px;
+  border-radius: 2px;
+  margin-left: 4px;
+  padding: 0 8px;
+  background: rgba(254,83,50,0.08);
+  border: 1px solid rgba(254,83,50,0.50);
+  color: #FE5332;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+  position: relative;
+    top: 4px;
+}
+.greenSpan{
+  display: inline-block;
+  height: 24px;
+  max-width:66px;
+  text-align: center;
+  line-height: 24px;
+  font-size: 12px;
+  border-radius: 2px;
+  margin-left: 4px;
+  padding: 0 8px;
+  background: rgba(59,205,141,0.08);
+  border: 1px solid rgba(59,205,141,0.50);
+  color: #3BCD8D;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+  position: relative;
+    top: 4px;
+}
+.blueSpan{
+  display: inline-block;
+  height: 24px;
+  max-width:66px;
+  text-align: center;
+  line-height: 24px;
+  font-size: 12px;
+  border-radius: 2px;
+  margin-left: 4px;
+  padding: 0 8px;
+  background: rgba(32,128,247,0.08);
+  border: 1px solid rgba(32,128,247,0.50);
+  color: #2080F7;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+  position: relative;
+    top: 4px;
+}
+.graySpan{
+  display: inline-block;
+  height: 24px;
+  max-width:66px;
+  text-align: center;
+  line-height: 24px;
+  font-size: 12px;
+  border-radius: 2px;
+  margin-left: 4px;
+  padding: 0 8px;
+  background: #F5F5F5;
+  border: 1px solid #E6E6E6;
+  color: #4D4D4D;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  box-sizing: border-box;
+  position: relative;
+    top: 4px;
+}
+
+.status-icon {
+  box-sizing: border-box;
+  display: inline-block;
+  height: 24px;
+  line-height: 24px;
+  font-size: 12px;
+  border-radius: 2px;
+  padding: 0px 8px;
+  margin-right: 4px;
+  &.status-icon-nodo{
+    background: #EFEFEF;
+    border: 1px solid #C6C6C6;
+  }
+  &.red-icon {
+    background: rgba(254,83,50,0.08);
+    border: 1px solid rgba(254,83,50,0.50);
+    color: #FE5332;
+  }
+  &.green-icon {
+    background: rgba(59,205,141,0.08);
+    border: 1px solid rgba(59,205,141,0.50);
+    color: #3BCD8D;
+  }
+  &.blue-icon {
+    background: rgba(32,128,247,0.08);
+    border: 1px solid rgba(32,128,247,0.50);
+    color: #2080F7;
+  }
+  &.gray-icon {
+    background: #F5F5F5;
+    border: 1px solid #E6E6E6;
+    color: #4D4D4D;
+  }
+  &.display-none {
+    display: none;
+  }
+}
+
+.sign-box {
+  padding-top: 30px;
+  padding-bottom: 24px;
+  .el-col {
+    text-align: center;
+  }
+  .sign-lable {
+    font-size: 14px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 10px;
+  }
+  .sign-ctrl-box {
+    font-size: 14px;
+    display: inline-block;
+    text-align: left;
+    margin-right: 30px;
+    vertical-align: top;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .sign-area-box {
+    width: 308px;
+    height: 126px;
+    background: #FAFAFA;
+    border: 1px solid #CCCCCC;
+    border-radius: 2px;
+    font-size: 14px;
+    color: #CCCCCC;
+    position: relative;
+    margin-top: 9px;
+    box-sizing: border-box;
+    // padding-right: 20px;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+    .tip {
+      position: absolute;
+      right: 8px;
+      bottom: 8px;
+    }
+    .tip1{
+      position: absolute;
+      right: 32px;
+      bottom: 8px;
+    }
+    &.mini {
+      width: 149px;
+    }
+  }
+}
+.table-register-name {
+  display: inline-block;
+  margin-right: 8px;
+  max-width: ~"calc(100% - 100px)";
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+  vertical-align: middle;
+}
+.el-input__suffix{
+  cursor: pointer;
+}

@@ -1,0 +1,497 @@
+/*
+  为保证基于当前服务的应用在IE下正常加载字体，请将字体图标css通过webpack打包。
+  整理by wangchanglong 2018/08/21 14:06
+ */
+
+/*
+  晶体管数字
+  .time {
+    font-size: 20px;
+    font-family: "DS-Digital";
+    color: #fff;
+  }
+ */
+@font-face {
+  font-family: "DS-Digital";
+  src: url(digitalFont/ds-digib.ttf);
+  src: url(digitalFont/ds-digib-webfont.eot) format("embedded-opentype"),
+  url(digitalFont/ds-digib-webfont.ttf) format("truetype"),
+  url(digitalFont/ds-digib-webfont.woff) format("woff"),
+  url(digitalFont/ds-digib-webfont.svg) format("svg");
+}
+
+/*
+  icomoon字体图标
+  <i class="icon-person"></i>
+ */
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('custom/icomoon.eot?cgjz4a');
+  src:  url('custom/icomoon.eot?cgjz4a#iefix') format('embedded-opentype'),
+    url('custom/icomoon.ttf?cgjz4a') format('truetype'),
+    url('custom/icomoon.woff?cgjz4a') format('woff'),
+    url('custom/icomoon.svg?cgjz4a#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Enable Ligatures ================ */
+  letter-spacing: 0;
+  -webkit-font-feature-settings: "liga";
+  -moz-font-feature-settings: "liga=1";
+  -moz-font-feature-settings: "liga";
+  -ms-font-feature-settings: "liga" 1;
+  font-feature-settings: "liga";
+  -webkit-font-variant-ligatures: discretionary-ligatures;
+  font-variant-ligatures: discretionary-ligatures;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-file:before {
+  content: "\e901";
+}
+.icon-cd:before {
+  content: "\e902";
+}
+.icon-video:before {
+  content: "\e910";
+}
+.icon-room:before {
+  content: "\e911";
+}
+.icon-addroom:before {
+  content: "\e912";
+}
+.icon-ball:before {
+  content: "\e913";
+}
+.icon-addball:before {
+  content: "\e914";
+}
+.icon-link:before {
+  content: "\e915";
+}
+.icon-area:before {
+  content: "\e916";
+}
+.icon-addarea:before {
+  content: "\e917";
+}
+.icon-alarm:before {
+  content: "\e918";
+}
+.icon-updateLocation:before {
+  content: "\e919";
+}
+.icon-nolink:before {
+  content: "\e91a";
+}
+.icon-videos:before {
+  content: "\e91b";
+}
+.icon-org:before {
+  content: "\e91c";
+}
+.icon-channel:before {
+  content: "\e91d";
+}
+.icon-place:before {
+  content: "\e91e";
+}
+.icon-goleft:before {
+  content: "\e91f";
+}
+.icon-trail:before {
+  content: "\e920";
+}
+.icon-exam:before {
+  content: "\e921";
+}
+.icon-baseinfo:before {
+  content: "\e922";
+}
+.icon-visit:before {
+  content: "\e923";
+}
+.icon-talk1:before {
+  content: "\e924";
+}
+.icon-search1:before {
+  content: "\e925";
+}
+.icon-accompany:before {
+  content: "\e926";
+}
+.icon-agency:before {
+  content: "\e927";
+}
+.icon-department:before {
+  content: "\e928";
+}
+.icon-person:before {
+  content: "\e929";
+}
+.icon-medical:before {
+  content: "\e92a";
+}
+.icon-dining:before {
+  content: "\e92b";
+}
+.icon-breceive:before {
+  content: "\e92c";
+}
+.icon-connectFail:before {
+  content: "\e92d";
+}
+.icon-connectSuccess:before {
+  content: "\e92e";
+}
+.icon-server:before {
+  content: "\e92f";
+}
+.icon-man1:before {
+  content: "\e930";
+}
+.icon-talk:before {
+  content: "\e931";
+}
+.icon-woman1:before {
+  content: "\e932";
+}
+.icon-build1:before {
+  content: "\e933";
+}
+.icon-root:before {
+  content: "\e934";
+}
+.icon-video1:before {
+  content: "\e935";
+}
+.icon-build2:before {
+  content: "\e936";
+}
+.icon-video2:before {
+  content: "\e937";
+}
+.icon-mechanism:before {
+  content: "\e938";
+}
+.icon-person1:before {
+  content: "\e939";
+}
+.icon-close:before {
+  content: "\e93a";
+}
+.icon-apply2:before {
+  content: "\e93b";
+}
+.icon-apply1:before {
+  content: "\e93c";
+}
+.icon-search:before {
+  content: "\e93d";
+}
+.icon-bigadd:before {
+  content: "\e93e";
+}
+.icon-dblright:before {
+  content: "\e93f";
+}
+.icon-search2:before {
+  content: "\e940";
+}
+.icon-add:before {
+  content: "\e941";
+}
+.icon-eyeOpen:before {
+  content: "\e942";
+}
+.icon-eyeClose:before {
+  content: "\e943";
+}
+.icon-viewDetail:before {
+  content: "\e944";
+}
+.icon-dblleft:before {
+  content: "\e945";
+}
+.icon-delete:before {
+  content: "\e946";
+}
+.icon-edit:before {
+  content: "\e947";
+}
+.icon-dbltop:before {
+  content: "\e948";
+}
+.icon-dbldown:before {
+  content: "\e949";
+}
+.icon-command:before {
+  content: "\e94a";
+}
+.icon-calendar:before {
+  content: "\e94b";
+}
+.icon-head:before {
+  content: "\e94c";
+}
+.icon-dblhead:before {
+  content: "\e94d";
+}
+.icon-door:before {
+  content: "\e94e";
+}
+.icon-up:before {
+  content: "\e94f";
+}
+.icon-right:before {
+  content: "\e950";
+}
+.icon-down:before {
+  content: "\e951";
+}
+.icon-caldelete:before {
+  content: "\e952";
+}
+.icon-left:before {
+  content: "\e953";
+}
+.icon-talk3:before {
+  content: "\e954";
+}
+.icon-caledit:before {
+  content: "\e955";
+}
+.icon-back:before {
+  content: "\e956";
+}
+.icon-export:before {
+  content: "\e957";
+}
+.icon-host:before {
+  content: "\e958";
+}
+.icon-reflesh:before {
+  content: "\e959";
+}
+.icon-video3:before {
+  content: "\e95a";
+}
+.icon-map:before {
+  content: "\e95b";
+}
+.icon-clock:before {
+  content: "\e95c";
+}
+.icon-talk4:before {
+  content: "\e95d";
+}
+.icon-talk5:before {
+  content: "\e95e";
+}
+.icon-goright:before {
+  content: "\e95f";
+}
+.icon-camera:before {
+  content: "\e960";
+}
+.icon-delete1:before {
+  content: "\e961";
+}
+.icon-device:before {
+  content: "\e962";
+}
+.icon-device2:before {
+  content: "\e963";
+}
+.icon-leftgo:before {
+  content: "\e964";
+}
+.icon-rightgo:before {
+  content: "\e965";
+}
+.icon-apply3:before {
+  content: "\e966";
+}
+.icon-person2:before {
+  content: "\e967";
+}
+.icon-distributed:before {
+  content: "\e968";
+}
+.icon-inRepertory:before {
+  content: "\e969";
+}
+.icon-outRepertory:before {
+  content: "\e96a";
+}
+.icon-man:before {
+  content: "\e96b";
+}
+.icon-woman:before {
+  content: "\e96c";
+}
+.icon-store:before {
+  content: "\e96d";
+}
+.icon-temptake:before {
+  content: "\e96e";
+}
+.icon-return:before {
+  content: "\e96f";
+}
+.icon-record:before {
+  content: "\e970";
+}
+.icon-undistributed:before {
+  content: "\e971";
+}
+.icon-arrangeRecord:before {
+  content: "\e972";
+}
+.icon-arrangeManage:before {
+  content: "\e973";
+}
+.icon-approve4detain:before {
+  content: "\e974";
+}
+.icon-bold:before {
+  content: "\e975";
+}
+.icon-application4extenddetention:before {
+  content: "\e976";
+}
+.icon-transfer:before {
+  content: "\e977";
+}
+.icon-juzhong:before {
+  content: "\e978";
+}
+.icon-approve4detention:before {
+  content: "\e979";
+}
+.icon-collection:before {
+  content: "\e97a";
+}
+.icon-doorGroup:before {
+  content: "\e97b";
+}
+.icon-Door:before {
+  content: "\e97c";
+}
+.icon-application4detention:before {
+  content: "\e97d";
+}
+.icon-zuoduiqi:before {
+  content: "\e97e";
+}
+.icon-underline:before {
+  content: "\e97f";
+}
+.icon-approve4extenddetention:before {
+  content: "\e980";
+}
+.icon-italic:before {
+  content: "\e981";
+}
+.icon-imageUpload:before {
+  content: "\e982";
+}
+.icon-longSet:before {
+  content: "\e983";
+}
+.icon-filter:before {
+  content: "\e984";
+}
+.icon-filterFull:before {
+  content: "\e985";
+}
+.icon-application4detain:before {
+  content: "\e986";
+}
+.icon-male:before {
+  content: "\e9dc";
+}
+.icon-female:before {
+  content: "\e9dd";
+}
+.icon-play:before {
+  content: "\ea1c";
+}
+.icon-pause:before {
+  content: "\ea1d";
+}
+.icon-icon-circlePlay:before {
+  content: "\e90f";
+  color: #7f8a9a;
+}
+.icon-icon-WaitAsk:before {
+  content: "\e903";
+  color: #fff;
+}
+.icon-icon-TemporaryExit:before {
+  content: "\e904";
+  color: #fff;
+}
+.icon-icon-personalExamination:before {
+  content: "\e905";
+  color: #fff;
+}
+.icon-icon-RegistrationInDistrict:before {
+  content: "\e906";
+  color: #fff;
+}
+.icon-icon-TemporaryStorage:before {
+  content: "\e907";
+  color: #fff;
+}
+.icon-icon-returnOfGoods .path1:before {
+  content: "\e908";
+  color: rgb(255, 255, 255);
+}
+.icon-icon-returnOfGoods .path2:before {
+  content: "\e909";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+}
+.icon-icon-returnOfGoods .path3:before {
+  content: "\e90a";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-icon-drugAbuseDetection:before {
+  content: "\e90b";
+  color: #fff;
+}
+.icon-icon-informationAcquisition:before {
+  content: "\e90c";
+  color: #fff;
+}
+.icon-icon-Interrogation:before {
+  content: "\e90d";
+  color: #fff;
+}
+.icon-icon-FinalExit:before {
+  content: "\e90e";
+  color: #fff;
+}
+.icon-icon-BackArea:before {
+  content: "\e900";
+  color: #fff;
+}
